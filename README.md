@@ -52,5 +52,8 @@ Theme structure:
 - partials
 - cast.toml
 
+## Static does not mean no UI
+
+Cast has also web UI to interact with it, so that everyone can make changes
 
 
