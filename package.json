@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node cast/App.js",
     "test": "mocha tests",
-    "lint": "eslint cast"
+    "lint": "eslint cast tests"
   },
   "repository": {
     "type": "git",
