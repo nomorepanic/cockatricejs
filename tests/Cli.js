@@ -1,7 +1,7 @@
 const Commander = require('commander');
 const Td = require('testdouble');
 
-const Cli = require('../cast/Cli');
+const Cli = require('../lib/Cli');
 
 
 describe('the Cli module', () => {

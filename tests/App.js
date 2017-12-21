@@ -1,4 +1,4 @@
-const App = require('../cast/App.js');
+const App = require('../lib/App.js');
 const Chai = require('chai');
 const Pug = require('pug');
 const td = require('testdouble');
@@ -8,7 +8,7 @@ const expect = Chai.expect;
 const fs = require('fs');
 
 
-describe('the Cast application', () => {
+describe('the Application module', () => {
     beforeEach(() => {
         this.app = new App();
     });
