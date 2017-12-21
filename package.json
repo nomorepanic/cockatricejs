@@ -2,9 +2,12 @@
   "name": "cast",
   "version": "0.0.1",
   "description": "Cast is a static website manager that integrates the most modern tools in a seamless workflow.",
-  "main": "index.js",
+  "main": "cast/App.js",
+  "bin": {
+    "cast": "cast/Bin.js"
+  },
   "scripts": {
-    "start": "node cast/App.js",
+    "start": "node cast/Bin.js",
     "test": "mocha tests",
     "lint": "eslint cast tests"
   },
