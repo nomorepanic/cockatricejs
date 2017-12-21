@@ -1,4 +1,6 @@
 const fs = require('fs');
+const Matter = require('gray-matter');
+const Pug = require('pug');
 
 
 class App {
@@ -10,6 +12,12 @@ class App {
                     this.files.push(file);
                 }
             });
+        });
+    }
+
+    makePage(templatePath) {
+        this.files.forEach((file) => {
+            App.compile(templatePath, file);
         });
     }
 }
