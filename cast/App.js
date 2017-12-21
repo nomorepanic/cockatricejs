@@ -15,6 +15,18 @@ class App {
         });
     }
 
+    static compile(templatePath, file) {
+        /* Compiles a template using data from a markdown file */
+        const compiler = Pug.compileFile(templatePath);
+        fs.readFile(file, 'utf8', (error, data) => {
+            const front = Matter(data);
+            front.data.content = front.content;
+            const html = compiler(front.data);
+            const page = file.slice(0, file.indexOf('.md'));
+            fs.writeFile(`${page}.html`, html, (innerError) => {});
+        });
+    }
+
     makePage(templatePath) {
         this.files.forEach((file) => {
             App.compile(templatePath, file);
