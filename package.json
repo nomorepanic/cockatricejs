@@ -1,26 +1,26 @@
 {
-  "name": "cast",
+  "name": "cockatrice",
   "version": "0.0.1",
-  "description": "Cast is a static website manager that integrates the most modern tools in a seamless workflow.",
-  "main": "cast/App.js",
+  "description": "Cockatrice is a static website manager that integrates the most modern tools in a seamless workflow.",
+  "main": "lib/App.js",
   "bin": {
-    "cast": "cast/Bin.js"
+    "cockatrice": "lib/Bin.js"
   },
   "scripts": {
-    "start": "node cast/Bin.js",
+    "start": "node lib/Bin.js",
     "test": "mocha tests",
-    "lint": "eslint cast tests"
+    "lint": "eslint lib tests"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vesuvium/cast.git"
+    "url": "git+https://github.com/Vesuvium/cockatrice.git"
   },
   "author": "Jacopo Cascioli",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/Vesuvium/cast/issues"
+    "url": "https://github.com/Vesuvium/cockatrice/issues"
   },
-  "homepage": "https://github.com/Vesuvium/cast#readme",
+  "homepage": "https://github.com/Vesuvium/cockatrice#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "eslint": "^4.13.1",
