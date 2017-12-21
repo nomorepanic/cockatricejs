@@ -1,11 +1,13 @@
-const App = require('../lib/App.js');
+const fs = require('fs');
+
 const Chai = require('chai');
 const Pug = require('pug');
-const td = require('testdouble');
+const Td = require('testdouble');
 
-const anything = td.matchers.anything;
-const expect = Chai.expect;
-const fs = require('fs');
+const App = require('../lib/App');
+
+const Anything = Td.matchers.anything;
+const Expect = Chai.expect;
 
 
 describe('the Application module', () => {
@@ -15,28 +17,28 @@ describe('the Application module', () => {
 
     it('should parse a directory', () => {
         const files = ['one.md', 'two.md', 'three.yml'];
-        td.replace(fs, 'readdir');
-        td.when(fs.readdir(anything())).thenCallback(null, files);
+        Td.replace(fs, 'readdir');
+        Td.when(fs.readdir(Anything())).thenCallback(null, files);
         this.app.findFiles('path');
-        expect(this.app.files).to.eql(['one.md', 'two.md']);
+        Expect(this.app.files).to.eql(['one.md', 'two.md']);
     });
 
     it('should compile a template', () => {
-        const compiler = td.function();
-        td.replace(Pug, 'compileFile');
-        td.replace(fs, 'writeFile');
-        td.replace(fs, 'readFile');
-        td.when(compiler(anything())).thenReturn('html');
-        td.when(Pug.compileFile('test.pug')).thenReturn(compiler);
-        td.when(fs.readFile(anything(), anything())).thenCallback(null, '');
+        const compiler = Td.function();
+        Td.replace(Pug, 'compileFile');
+        Td.replace(fs, 'writeFile');
+        Td.replace(fs, 'readFile');
+        Td.when(compiler(Anything())).thenReturn('html');
+        Td.when(Pug.compileFile('test.pug')).thenReturn(compiler);
+        Td.when(fs.readFile(Anything(), Anything())).thenCallback(null, '');
         App.compile('test.pug', 'front.md');
-        td.verify(fs.writeFile('front.html', 'html', anything()));
+        Td.verify(fs.writeFile('front.html', 'html', Anything()));
     });
 
     it('should generate a page', () => {
-        td.replace(App, 'compile');
+        Td.replace(App, 'compile');
         this.app.files = ['front.md'];
         this.app.makePages('test.pug');
-        td.verify(App.compile('test.pug', 'front.md'));
+        Td.verify(App.compile('test.pug', 'front.md'));
     });
 });
