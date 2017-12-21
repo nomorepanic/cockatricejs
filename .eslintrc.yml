@@ -1,0 +1,13 @@
+env:
+    es6: true
+    node: true
+    mocha: true
+extends: airbnb-base
+rules:
+    indent:
+        - error
+        - 4
+    prefer-destructuring:
+        - error
+        - object: false
+          array: true
