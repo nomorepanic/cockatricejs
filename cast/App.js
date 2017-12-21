@@ -27,7 +27,7 @@ class App {
         });
     }
 
-    makePage(templatePath) {
+    makePages(templatePath) {
         this.files.forEach((file) => {
             App.compile(templatePath, file);
         });

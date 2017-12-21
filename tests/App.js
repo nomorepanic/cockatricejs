@@ -36,7 +36,7 @@ describe('the Cast application', () => {
     it('should generate a page', () => {
         td.replace(App, 'compile');
         this.app.files = ['front.md'];
-        this.app.makePage('test.pug');
+        this.app.makePages('test.pug');
         td.verify(App.compile('test.pug', 'front.md'));
     });
 });
