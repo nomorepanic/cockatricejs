@@ -7,7 +7,7 @@
     "cockatrice": "lib/Bin.js"
   },
   "scripts": {
-    "start": "node lib/Bin.js",
+    "start": "node bin/cockatrice",
     "test": "mocha tests",
     "lint": "eslint lib tests"
   },
