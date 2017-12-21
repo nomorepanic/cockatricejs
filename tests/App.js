@@ -12,7 +12,16 @@ const Expect = Chai.expect;
 
 describe('the Application module', () => {
     beforeEach(() => {
-        this.app = new App();
+        this.template = 'templates/test.pug';
+        this.content = 'content';
+        this.output = 'output';
+        this.app = new App(this.template, this.content, this.output);
+    });
+
+    it('should have a constructor method', () => {
+        Expect(this.app.template).to.eql(this.template);
+        Expect(this.app.content).to.eql(this.content);
+        Expect(this.app.output).to.eql(this.output);
     });
 
     it('should parse a directory', () => {
