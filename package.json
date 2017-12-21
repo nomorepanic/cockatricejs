@@ -2,6 +2,14 @@
   "name": "cockatrice",
   "version": "0.0.1",
   "description": "Cockatrice is a static website manager that integrates the most modern tools in a seamless workflow.",
+  "keywords": [
+    "static",
+    "generator",
+    "markdown",
+    "pug",
+    "coffeescript",
+    "sass"
+   ],
   "main": "lib/App.js",
   "bin": {
     "cockatrice": "lib/Bin.js"
