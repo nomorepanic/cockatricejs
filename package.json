@@ -1,6 +1,6 @@
 {
   "name": "cockatrice",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cockatrice is a static website manager that integrates the most modern tools in a seamless workflow.",
   "keywords": [
     "static",
@@ -12,7 +12,7 @@
    ],
   "main": "lib/App.js",
   "bin": {
-    "cockatrice": "lib/Bin.js"
+    "cockatrice": "bin/cockatrice"
   },
   "scripts": {
     "start": "node bin/cockatrice",
