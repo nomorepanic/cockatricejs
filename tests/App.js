@@ -38,16 +38,16 @@ describe('the Application module', () => {
         Td.replace(fs, 'writeFile');
         Td.replace(fs, 'readFile');
         Td.when(compiler(Anything())).thenReturn('html');
-        Td.when(Pug.compileFile('test.pug')).thenReturn(compiler);
+        Td.when(Pug.compileFile(this.template)).thenReturn(compiler);
         Td.when(fs.readFile(Anything(), Anything())).thenCallback(null, '');
-        App.compile('test.pug', 'front.md');
+        this.app.compile('front.md');
         Td.verify(fs.writeFile('front.html', 'html', Anything()));
     });
 
     it('should generate a page', () => {
-        Td.replace(App, 'compile');
+        Td.replace(this.app, 'compile');
         this.app.files = ['front.md'];
-        this.app.makePages('test.pug');
-        Td.verify(App.compile('test.pug', 'front.md'));
+        this.app.makePages();
+        Td.verify(this.app.compile('front.md'));
     });
 });
