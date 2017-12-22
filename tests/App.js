@@ -28,9 +28,9 @@ describe('the Application module', () => {
         const files = ['one.md', 'two.md', 'three.yml'];
         Td.replace(fs, 'readdirSync');
         Td
-          .when(fs.readdirSync(Anything()))
-          .thenCallback(null, files);
-        Expect(App.findFiles('path')).to.eql(['one.md', 'two.md']);
+            .when(fs.readdirSync(Anything()))
+            .thenReturn(files);
+        Expect(App.findFiles('path')).to.eql(['path/one.md', 'path/two.md']);
     });
 
     it('should compile a template', () => {
