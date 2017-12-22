@@ -18,7 +18,7 @@
     "start": "node bin/cockatrice",
     "compile": "coffee --compile --output dist lib",
     "test": "mocha --compilers coffee:coffeescript/register tests",
-    "lint": "eslint lib tests"
+    "lint": "coffeelint lib tests"
   },
   "repository": {
     "type": "git",
@@ -32,10 +32,8 @@
   "homepage": "https://github.com/Vesuvium/cockatrice#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "coffeelint": "^2.0.7",
     "coffeescript": "^2.1.0",
-    "eslint": "^4.13.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
     "mocha": "^4.0.1",
     "testdouble": "^3.2.7"
   },
