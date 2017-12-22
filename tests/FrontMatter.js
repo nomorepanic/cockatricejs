@@ -4,24 +4,24 @@ const Chai = require('chai');
 const Pug = require('pug');
 const Td = require('testdouble');
 
-const App = require('../lib/App');
+const FrontMatter = require('../lib/FrontMatter');
 
 const Anything = Td.matchers.anything;
 const Expect = Chai.expect;
 
 
-describe('the Application module', () => {
+describe('the FrontMatter module', () => {
     beforeEach(() => {
         this.template = 'templates/test.pug';
         this.content = 'content';
         this.output = 'output';
-        this.app = new App(this.template, this.content, this.output);
+        this.front = new FrontMatter(this.template, this.content, this.output);
     });
 
     it('should have a constructor method', () => {
-        Expect(this.app.template).to.eql(this.template);
-        Expect(this.app.content).to.eql(this.content);
-        Expect(this.app.output).to.eql(this.output);
+        Expect(this.front.template).to.eql(this.template);
+        Expect(this.front.content).to.eql(this.content);
+        Expect(this.front.output).to.eql(this.output);
     });
 
     it('should parse a directory', () => {
@@ -30,7 +30,8 @@ describe('the Application module', () => {
         Td
             .when(fs.readdirSync(Anything()))
             .thenReturn(files);
-        Expect(App.findFiles('path')).to.eql(['path/one.md', 'path/two.md']);
+        const result = FrontMatter.findFiles('path');
+        Expect(result).to.eql(['path/one.md', 'path/two.md']);
     });
 
     it('should compile a template', () => {
@@ -41,18 +42,18 @@ describe('the Application module', () => {
         Td.when(compiler(Anything())).thenReturn('html');
         Td.when(Pug.compileFile(this.template)).thenReturn(compiler);
         Td.when(fs.readFile(Anything(), Anything())).thenCallback(null, '');
-        this.app.compile('front.md');
+        this.front.compile('front.md');
         Td.verify(fs.writeFile('output/front.html', 'html', Anything()));
     });
 
     it('should generate a page', () => {
-        Td.replace(this.app, 'compile');
-        Td.replace(App, 'findFiles');
+        Td.replace(this.front, 'compile');
+        Td.replace(FrontMatter, 'findFiles');
         Td
-          .when(App.findFiles(this.content))
-          .thenReturn(['test.md']);
-        this.app.makePages();
-        Td.verify(this.app.compile('test.md'));
+            .when(FrontMatter.findFiles(this.content))
+            .thenReturn(['test.md']);
+        this.front.makePages();
+        Td.verify(this.front.compile('test.md'));
     });
 
     afterEach(() => {
