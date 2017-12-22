@@ -9,7 +9,7 @@ describe('the Cli module', () => {
         const command = Td.object();
         Td.replace(Commander, 'command');
         Td
-            .when(Commander.command('compile <filesDirectory> <templatePath>'))
+            .when(Commander.command('compile <template> <content> <output>'))
             .thenReturn(command);
         Cli.compile();
         Td.verify(command.action(Td.matchers.anything()));
