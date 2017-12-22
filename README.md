@@ -1,10 +1,14 @@
 # Cockatrice
 
+[![Travis](https://img.shields.io/travis/Vesuvium/cockatrice.svg?style=for-the-badge)]()
+[![npm](https://img.shields.io/npm/v/cockatrice.svg?style=for-the-badge)]()
+[![npm](https://img.shields.io/badge/status-alpha-red.svg?style=for-the-badge)]()
+
 Cockatrice is a static website manager that makes it really easy to create a
 website and manage it because it integrates the most modern tools in a seamless
 workflow.
 
-Currently, the project is at an early alpha stage. 
+Currently, the project is at an early alpha stage.
 
 Cockatrice revolves around some principles:
 - Even if you use a theme, you're likely to change some bits here and there,
