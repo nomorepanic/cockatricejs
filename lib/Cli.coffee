@@ -7,7 +7,7 @@ class Cli
     @compile: ->
         Commander
             .command('compile <template> <content> <output>')
-            .action (template, content, output) =>
+            .action (template, content, output) ->
                 app = new FrontMatter template, content, output
                 app.makePages()
 
