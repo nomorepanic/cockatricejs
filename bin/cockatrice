@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-const Cli = require('../lib/Cli');
+const Cli = require('../dist/Cli');
 
 
 Cli.main();
