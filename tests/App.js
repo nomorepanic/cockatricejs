@@ -26,10 +26,11 @@ describe('the Application module', () => {
 
     it('should parse a directory', () => {
         const files = ['one.md', 'two.md', 'three.yml'];
-        Td.replace(fs, 'readdir');
-        Td.when(fs.readdir(Anything())).thenCallback(null, files);
-        this.app.findFiles('path');
-        Expect(this.app.files).to.eql(['one.md', 'two.md']);
+        Td.replace(fs, 'readdirSync');
+        Td
+          .when(fs.readdirSync(Anything()))
+          .thenCallback(null, files);
+        Expect(App.findFiles('path')).to.eql(['one.md', 'two.md']);
     });
 
     it('should compile a template', () => {
@@ -46,8 +47,15 @@ describe('the Application module', () => {
 
     it('should generate a page', () => {
         Td.replace(this.app, 'compile');
-        this.app.files = ['front.md'];
+        Td.replace(App, 'findFiles');
+        Td
+          .when(App.findFiles(this.content))
+          .thenReturn(['test.md']);
         this.app.makePages();
-        Td.verify(this.app.compile('front.md'));
+        Td.verify(this.app.compile('test.md'));
+    });
+
+    afterEach(() => {
+        Td.reset();
     });
 });
