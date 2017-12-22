@@ -9,14 +9,15 @@
     "pug",
     "coffeescript",
     "sass"
-   ],
-  "main": "lib/App.js",
+  ],
+  "main": "dist/FrontMatter.js",
   "bin": {
     "cockatrice": "bin/cockatrice"
   },
   "scripts": {
     "start": "node bin/cockatrice",
-    "test": "mocha tests",
+    "compile": "coffee --compile --output dist lib",
+    "test": "mocha --compilers coffee:coffeescript/register tests",
     "lint": "eslint lib tests"
   },
   "repository": {
@@ -31,6 +32,7 @@
   "homepage": "https://github.com/Vesuvium/cockatrice#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "coffeescript": "^2.1.0",
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
