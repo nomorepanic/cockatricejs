@@ -41,7 +41,7 @@ describe('the Application module', () => {
         Td.when(Pug.compileFile(this.template)).thenReturn(compiler);
         Td.when(fs.readFile(Anything(), Anything())).thenCallback(null, '');
         this.app.compile('front.md');
-        Td.verify(fs.writeFile('front.html', 'html', Anything()));
+        Td.verify(fs.writeFile('output/front.html', 'html', Anything()));
     });
 
     it('should generate a page', () => {
