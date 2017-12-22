@@ -1,6 +1,6 @@
 {
   "name": "cockatrice",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Cockatrice is a static website manager that integrates the most modern tools in a seamless workflow.",
   "keywords": [
     "static",
@@ -15,10 +15,10 @@
     "cockatrice": "bin/cockatrice"
   },
   "scripts": {
-    "start": "node bin/cockatrice",
     "compile": "coffee --compile --output dist lib",
     "test": "mocha --compilers coffee:coffeescript/register tests",
-    "lint": "coffeelint lib tests"
+    "lint": "coffeelint lib tests",
+    "prepare": "npm run compile"
   },
   "repository": {
     "type": "git",
