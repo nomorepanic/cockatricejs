@@ -9,7 +9,10 @@ describe 'the Cli module', ->
         command = Td.object()
         Td.replace(Commander, 'command')
         Td
-            .when(Commander.command('compile <template> <content> <output>'))
+            .when(Commander.command('compile <what> <target> <output>'))
+            .thenReturn(command)
+        Td
+            .when(command.option('-i, --input [input]'))
             .thenReturn(command)
         Cli.compile()
         Td.verify(command.action(Td.matchers.anything()))

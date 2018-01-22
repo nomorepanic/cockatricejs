@@ -7,9 +7,10 @@ Stylesheets = require './Stylesheets'
 class Cli
     @compile: ->
         Commander
-            .command('compile <template> <content> <output>')
-            .action (template, content, output) ->
-                app = new FrontMatter template, content, output
+            .command('compile <what> <target> <output>')
+            .option('-i, --input [input]')
+            .action (what, target, output, options) ->
+                app = new FrontMatter target, options.input, output
                 app.makePages()
 
     @lint: ->
