@@ -15,7 +15,7 @@ class Handler
         if what == 'pug'
             frontmatter = Handler.frontMatter target, options.input, output
             frontmatter.makePages()
-        else if what == 'sass'
+        else if what == 'scss'
             stylesheets = Handler.stylesheets target, output
             stylesheets.compile()
 

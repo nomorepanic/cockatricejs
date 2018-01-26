@@ -38,5 +38,5 @@ describe 'the Handler module', ->
             Td
                 .when(Handler.stylesheets('target', 'output'))
                 .thenReturn({compile: compile})
-            Handler.compile 'sass', 'target', 'output', {input: 'input'}
+            Handler.compile 'scss', 'target', 'output', {input: 'input'}
             Td.verify(compile())
