@@ -22,11 +22,21 @@ describe 'the Handler module', ->
         Chai.expect(result.file).to.eql('file')
         Chai.expect(result.output).to.eql('output')
 
-    it 'should have a compile method', ->
-        Td.replace Handler, 'frontMatter'
-        makePages = Td.function()
-        Td
-            .when(Handler.frontMatter('target', 'input', 'output'))
-            .thenReturn({makePages: makePages})
-        Handler.compile 'pug', 'target', 'output', {input: 'input'}
-        Td.verify(makePages())
+    describe 'should have a compile method', ->
+        it 'should be able to compile pug templates', ->
+            Td.replace Handler, 'frontMatter'
+            makePages = Td.function()
+            Td
+                .when(Handler.frontMatter('target', 'input', 'output'))
+                .thenReturn({makePages: makePages})
+            Handler.compile 'pug', 'target', 'output', {input: 'input'}
+            Td.verify(makePages())
+
+        it 'should be able to compile Sass files', ->
+            Td.replace Handler, 'stylesheets'
+            compile = Td.function()
+            Td
+                .when(Handler.stylesheets('target', 'output'))
+                .thenReturn({compile: compile})
+            Handler.compile 'sass', 'target', 'output', {input: 'input'}
+            Td.verify(compile())

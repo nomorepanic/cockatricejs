@@ -12,7 +12,11 @@ class Handler
         return new Stylesheets target, output
 
     @compile: (what, target, output, options) ->
-        frontmatter = Handler.frontMatter target, options.input, output
-        frontmatter.makePages()
+        if what == 'pug'
+            frontmatter = Handler.frontMatter target, options.input, output
+            frontmatter.makePages()
+        else if what == 'sass'
+            stylesheets = Handler.stylesheets target, output
+            stylesheets.compile()
 
 module.exports = Handler
