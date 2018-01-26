@@ -4,6 +4,7 @@ path = require 'path'
 Matter = require 'gray-matter'
 Pug = require 'pug'
 
+Html = require './Html'
 
 class FrontMatter
     constructor: (@template, @content, @output) ->
@@ -16,6 +17,9 @@ class FrontMatter
                 markdowns.push(path.join(contentPath, file))
         push file for file in files
         return markdowns
+
+    html: (engine) ->
+        return new Html(engine)
 
     compile: (file) ->
         compiler = Pug.compileFile(@template)

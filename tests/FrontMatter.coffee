@@ -5,6 +5,7 @@ Pug = require 'pug'
 Td = require 'testdouble'
 
 FrontMatter = require '../lib/FrontMatter.coffee'
+Html = require '../lib/Html'
 
 
 describe 'the FrontMatter module', ->
@@ -20,6 +21,11 @@ describe 'the FrontMatter module', ->
         @expect(@front.template).to.eql(@template)
         @expect(@front.content).to.eql(@content)
         @expect(@front.output).to.eql(@output)
+
+    it 'should have an html method', ->
+        html = @front.html('engine')
+        @expect(html).to.be.an.instanceof(Html)
+        @expect(html.engine).to.eql('engine')
 
     it 'should parse a directory', ->
         files = ['one.md', 'two.md', 'three.yml']
