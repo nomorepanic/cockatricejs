@@ -72,3 +72,22 @@ Theme structure:
 
 Cockatrice has also a web UI to interact with it, so that everyone can make
  changes
+
+## Usage
+
+Install with npm
+
+```
+npm install -g cockatrice
+```
+
+Compile pug with content from frontmatter:
+
+```
+cockatrice compile pug template.pug output/folder -i path/to/frontmatter/folder
+```
+
+Compile scss:
+```
+cockatrice compile sass main.scss output.css
+```
