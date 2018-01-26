@@ -10,6 +10,9 @@ class FrontMatter
     constructor: (@template, @content, @output) ->
 
     @findFiles: (contentPath) ->
+        ###
+        Finds markdown files
+        ###
         markdowns = []
         files = fs.readdirSync(contentPath)
         push = (file) ->
@@ -19,9 +22,15 @@ class FrontMatter
         return markdowns
 
     html: (engine) ->
+        ###
+        Create the html engine
+        ###
         return new Html(engine)
 
     compile: (file) ->
+        ###
+        Compiles the given template to html with markdown data
+        ###
         compiler = Pug.compileFile(@template)
         fs.readFile file, 'utf-8', (error, data) =>
             front = Matter(data)
@@ -33,6 +42,9 @@ class FrontMatter
 
 
     makePages: ->
+        ###
+        Builds html pages agains the given path
+        ###
         files = FrontMatter.findFiles(@content)
         @compile file for file in files
 
