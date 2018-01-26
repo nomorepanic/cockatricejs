@@ -4,6 +4,7 @@ Chai = require 'chai'
 
 FrontMatter = require '../lib/FrontMatter'
 Handler = require '../lib/Handler'
+Stylesheets = require '../lib/Stylesheets'
 
 
 describe 'the Handler module', ->
@@ -15,6 +16,11 @@ describe 'the Handler module', ->
         Chai.expect(result.content).to.eql('input')
         Chai.expect(result.output).to.eql('output')
 
+    it 'should have a stylesheets method', ->
+        result = Handler.stylesheets 'file', 'output'
+        Chai.expect(result).to.be.an.instanceof(Stylesheets)
+        Chai.expect(result.file).to.eql('file')
+        Chai.expect(result.output).to.eql('output')
 
     it 'should have a compile method', ->
         Td.replace Handler, 'frontMatter'
