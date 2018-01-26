@@ -14,3 +14,13 @@ describe 'the Handler module', ->
         Chai.expect(result.template).to.eql('target')
         Chai.expect(result.content).to.eql('input')
         Chai.expect(result.output).to.eql('output')
+
+
+    it 'should have a compile method', ->
+        Td.replace Handler, 'frontMatter'
+        makePages = Td.function()
+        Td
+            .when(Handler.frontMatter('target', 'input', 'output'))
+            .thenReturn({makePages: makePages})
+        Handler.compile 'pug', 'target', 'output', {input: 'input'}
+        Td.verify(makePages())
