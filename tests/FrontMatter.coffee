@@ -1,7 +1,6 @@
 fs = require 'fs'
 
 Chai = require 'chai'
-Pug = require 'pug'
 Td = require 'testdouble'
 
 FrontMatter = require '../lib/FrontMatter.coffee'
@@ -37,13 +36,13 @@ describe 'the FrontMatter module', ->
         @expect(result).to.eql(['path/one.md', 'path/two.md'])
 
     it 'should compile a template', ->
-        compiler = Td.function()
-        Td.replace(Pug, 'compileFile')
+        compile = Td.function()
+        Td.replace(@front, 'html')
         Td.replace(fs, 'writeFile')
         Td.replace(fs, 'readFile')
-        Td.when(compiler(@anything)).thenReturn('html')
-        Td.when(Pug.compileFile(@template)).thenReturn(compiler)
+        Td.when(@front.html('pug')).thenReturn({compile: compile})
         Td.when(fs.readFile(@anything, @anything)).thenCallback(null, '')
+        Td.when(compile(@template, {content: ''})).thenReturn('html')
         @front.compile('front.md')
         Td.verify(fs.writeFile('output/front.html', 'html', @anything))
 
