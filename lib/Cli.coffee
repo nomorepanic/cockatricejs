@@ -1,6 +1,6 @@
 Commander = require 'commander'
 
-FrontMatter = require './FrontMatter'
+Handler = require './Handler'
 Stylesheets = require './Stylesheets'
 
 
@@ -10,8 +10,7 @@ class Cli
             .command('compile <what> <target> <output>')
             .option('-i, --input [input]')
             .action (what, target, output, options) ->
-                app = new FrontMatter target, options.input, output
-                app.makePages()
+                Handler.compile what target output options
 
     @lint: ->
         Commander
