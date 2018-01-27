@@ -3,6 +3,7 @@ fs = require 'fs'
 Chai = require 'chai'
 Td = require 'testdouble'
 
+Files = require '../lib/Files'
 FrontMatter = require '../lib/FrontMatter.coffee'
 Html = require '../lib/Html'
 
@@ -26,15 +27,6 @@ describe 'the FrontMatter module', ->
         @expect(html).to.be.an.instanceof(Html)
         @expect(html.engine).to.eql('engine')
 
-    it 'should parse a directory', ->
-        files = ['one.md', 'two.md', 'three.yml']
-        Td.replace(fs, 'readdirSync')
-        Td
-            .when(fs.readdirSync(@anything))
-            .thenReturn(files)
-        result = FrontMatter.findFiles('path')
-        @expect(result).to.eql(['path/one.md', 'path/two.md'])
-
     it 'should compile a template', ->
         compile = Td.function()
         Td.replace(@front, 'html')
@@ -48,9 +40,9 @@ describe 'the FrontMatter module', ->
 
     it 'should generate a page', ->
         Td.replace(@front, 'compile')
-        Td.replace(FrontMatter, 'findFiles')
+        Td.replace(Files, 'find')
         Td
-            .when(FrontMatter.findFiles(@content))
+            .when(Files.find(@content, '.md'))
             .thenReturn(['test.md'])
         @front.makePages()
         Td.verify(@front.compile('test.md'))

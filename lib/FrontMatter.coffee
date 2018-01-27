@@ -3,23 +3,12 @@ path = require 'path'
 
 Matter = require 'gray-matter'
 
+Files = require './Files'
 Html = require './Html'
 
 
 class FrontMatter
     constructor: (@template, @content, @output) ->
-
-    @findFiles: (contentPath) ->
-        ###
-        Finds markdown files
-        ###
-        markdowns = []
-        files = fs.readdirSync(contentPath)
-        push = (file) ->
-            if path.extname(file) == '.md'
-                markdowns.push(path.join(contentPath, file))
-        push file for file in files
-        return markdowns
 
     html: (engine) ->
         ###
@@ -43,9 +32,9 @@ class FrontMatter
 
     makePages: ->
         ###
-        Builds html pages agains the given path
+        Builds html pages against the given path
         ###
-        files = FrontMatter.findFiles(@content)
+        files = Files.find(@content, '.md')
         @compile file for file in files
 
 module.exports = FrontMatter
