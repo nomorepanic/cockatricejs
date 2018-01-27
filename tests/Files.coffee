@@ -27,6 +27,34 @@ describe 'the Files module', ->
         it 'should ignore files with wrong extension', ->
             Chai.expect(Files.filter('test.rst', '.md')).to.be.eql(undefined)
 
+    describe 'the find function', ->
+
+        beforeEach ->
+            Td.replace(Files, 'isDirectory')
+
+        it 'should return files from a directory', ->
+            Td.replace(Files, 'findMany')
+            Td.replace(fs, 'readdirSync')
+            Td
+                .when(Files.isDirectory('folder'))
+                .thenReturn(true)
+            Td
+                .when(Files.findMany('folder', ['files'], '.md'))
+                .thenReturn(['results'])
+
+            Td
+                .when(fs.readdirSync('folder'))
+                .thenReturn(['files'])
+            results = Files.find('folder', '.md')
+            Chai.expect(results).to.be.eql(['results'])
+
+        it 'should return a single file', ->
+            Td.replace(Files, 'filter')
+            Td.when(Files.isDirectory('one.md')).thenReturn(false)
+            Td.when(Files.filter('one.md', '.md')).thenReturn('filtered')
+            result = Files.find('one.md', '.md')
+            Chai.expect(result).to.be.eql('filtered')
+
     it 'should have a findMany function', ->
         Td.replace(Files, 'filter')
         Td

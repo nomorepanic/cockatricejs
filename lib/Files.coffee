@@ -19,4 +19,13 @@ class Files
         push Files.filter file, extension for file in files
         return results
 
+    @find: (basePath, extension) ->
+        ###
+        Finds files in given path that match the extension
+        ###
+        if Files.isDirectory(basePath)
+            files = fs.readdirSync(basePath)
+            return Files.findMany(basePath, files, extension)
+        return Files.filter(basePath, extension)
+
 module.exports = Files
