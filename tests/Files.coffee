@@ -26,3 +26,14 @@ describe 'the Files module', ->
 
         it 'should ignore files with wrong extension', ->
             Chai.expect(Files.filter('test.rst', '.md')).to.be.eql(undefined)
+
+    it 'should have a findMany function', ->
+        Td.replace(Files, 'filter')
+        Td
+            .when(Files.filter('one.md', '.md'))
+            .thenReturn('one.md')
+        results = Files.findMany('content', ['one.md', 'two.rst'], '.md')
+        Chai.expect(results).to.be.eql(['content/one.md'])
+
+    afterEach ->
+        Td.reset()

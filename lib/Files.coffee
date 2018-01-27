@@ -11,4 +11,12 @@ class Files
         if path.extname(file) == extension
             return file
 
+    @findMany: (basePath, files, extension) ->
+        results = []
+        push = (file) ->
+            if file
+                results.push(path.join(basePath, file))
+        push Files.filter file, extension for file in files
+        return results
+
 module.exports = Files
