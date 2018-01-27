@@ -16,7 +16,7 @@
   },
   "scripts": {
     "compile": "coffee --compile --output dist lib",
-    "test": "mocha --compilers coffee:coffeescript/register tests",
+    "test": "mocha --compilers coffee:coffeescript/register tests/**",
     "lint": "coffeelint lib tests",
     "prepare": "npm run compile"
   },
