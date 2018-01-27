@@ -37,8 +37,25 @@ describe 'the Content module', ->
         Td
             .when(Files.find(@content.path, '.md'))
             .thenReturn(['one.md'])
-        result = @content.fetch()
+        @content.fetch()
         Chai.expect(@content.data).to.be.an('array').to.have.lengthOf(1)
+
+    describe 'the get method', ->
+        beforeEach ->
+            @items = [{data: {title: 'one'}}]
+            Td.replace(@content, 'fetch')
+            Td
+                .when(@content.fetch())
+                .thenReturn(@items)
+
+        it 'should be able to return items', ->
+            result = @content.get()
+            Chai.expect(result).to.be.eql(@items)
+
+        it 'should be able to return one item', ->
+            @content.query.one = true
+            result = @content.get()
+            Chai.expect(result).to.be.eql(@items[0])
 
 
     afterEach ->

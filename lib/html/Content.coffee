@@ -30,4 +30,12 @@ class Content
                 items.push(Matter(data))
         read file for file in files
 
+    get: ->
+        items = @fetch()
+        if @query.one
+            return items[0]
+        return items
+
+
+
 module.exports = Content
