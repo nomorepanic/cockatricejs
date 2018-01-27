@@ -1,7 +1,6 @@
 Commander = require 'commander'
 
 Handler = require './Handler'
-Stylesheets = require './Stylesheets'
 
 
 class Cli

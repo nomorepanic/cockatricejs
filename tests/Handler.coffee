@@ -4,12 +4,12 @@ Chai = require 'chai'
 
 Html = require '../lib/html/Html'
 Handler = require '../lib/Handler'
-Stylesheets = require '../lib/Stylesheets'
+Stylesheets = require '../lib/styles/Stylesheets'
 
 
 describe 'the Handler module', ->
 
-    it 'should have a frontMatter method', ->
+    it 'should have an html method', ->
         result = Handler.html 'target', 'input', 'output'
         Chai.expect(result).to.be.an.instanceof(Html)
         Chai.expect(result.template).to.eql('target')

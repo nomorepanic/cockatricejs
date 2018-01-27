@@ -1,5 +1,5 @@
 Html = require './html/Html'
-Stylesheets = require './Stylesheets'
+Stylesheets = require './styles/Stylesheets'
 
 
 class Handler
