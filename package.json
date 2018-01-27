@@ -10,7 +10,7 @@
     "coffeescript",
     "sass"
   ],
-  "main": "dist/FrontMatter.js",
+  "main": "dist/Handler.js",
   "bin": {
     "cockatrice": "bin/cockatrice"
   },
