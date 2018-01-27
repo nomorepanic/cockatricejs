@@ -1,9 +1,9 @@
 Pug = require 'pug'
 
 
-class Html
+class Engines
     ###
-    Handles html generation from various templating engines.
+    Handles html templating engines and compilation to html
     ###
     constructor: (@engine) ->
 
@@ -11,4 +11,4 @@ class Html
         if @engine == 'pug'
             Pug.compileFile(template).compile(data)
 
-module.exports = Html
+module.exports = Engines

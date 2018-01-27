@@ -1,20 +1,20 @@
-FrontMatter = require './FrontMatter'
+Html = require './html/Html'
 Stylesheets = require './Stylesheets'
 
 
 class Handler
     # Handles cli operations
 
-    @frontMatter: (target, input, output) ->
-        return new FrontMatter target, input, output
+    @html: (target, input, output) ->
+        return new Html target, input, output
 
     @stylesheets: (target, output) ->
         return new Stylesheets target, output
 
     @compile: (what, target, output, options) ->
         if what == 'pug'
-            frontmatter = Handler.frontMatter target, options.input, output
-            frontmatter.makePages()
+            html = Handler.html target, options.input, output
+            html.makePages()
         else if what == 'scss'
             stylesheets = Handler.stylesheets target, output
             stylesheets.compile()

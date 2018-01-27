@@ -2,14 +2,14 @@ Chai = require 'chai'
 Pug = require 'pug'
 Td = require 'testdouble'
 
-Html = require '../lib/Html'
+Engines = require '../../lib/html/Engines'
 
 
-describe 'the Html module', ->
+describe 'the Engines module', ->
 
     it 'should have a constructor', ->
-        html = new Html('engine')
-        Chai.expect(html.engine).to.be.eql('engine')
+        engine = new Engines('engine')
+        Chai.expect(engine.engine).to.be.eql('engine')
 
     it 'should have a compile method', ->
         Td.replace(Pug, 'compileFile')
@@ -20,6 +20,6 @@ describe 'the Html module', ->
         Td
             .when(compile('data'))
             .thenReturn('compiled-html')
-        html = new Html('pug')
-        result = html.compile('template.pug', 'data')
+        engines = new Engines('pug')
+        result = engines.compile('template.pug', 'data')
         Chai.expect(result).to.be.eql('compiled-html')

@@ -2,7 +2,7 @@ Td = require 'testdouble'
 
 Chai = require 'chai'
 
-FrontMatter = require '../lib/FrontMatter'
+Html = require '../lib/html/Html'
 Handler = require '../lib/Handler'
 Stylesheets = require '../lib/Stylesheets'
 
@@ -10,8 +10,8 @@ Stylesheets = require '../lib/Stylesheets'
 describe 'the Handler module', ->
 
     it 'should have a frontMatter method', ->
-        result = Handler.frontMatter 'target', 'input', 'output'
-        Chai.expect(result).to.be.an.instanceof(FrontMatter)
+        result = Handler.html 'target', 'input', 'output'
+        Chai.expect(result).to.be.an.instanceof(Html)
         Chai.expect(result.template).to.eql('target')
         Chai.expect(result.content).to.eql('input')
         Chai.expect(result.output).to.eql('output')
@@ -24,10 +24,10 @@ describe 'the Handler module', ->
 
     describe 'should have a compile method', ->
         it 'should be able to compile pug templates', ->
-            Td.replace Handler, 'frontMatter'
+            Td.replace Handler, 'html'
             makePages = Td.function()
             Td
-                .when(Handler.frontMatter('target', 'input', 'output'))
+                .when(Handler.html('target', 'input', 'output'))
                 .thenReturn({makePages: makePages})
             Handler.compile 'pug', 'target', 'output', {input: 'input'}
             Td.verify(makePages())
