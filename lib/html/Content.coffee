@@ -19,6 +19,10 @@ class Content
         @query.one = false
         return @
 
+    order: ->
+        @query.order = 'key'
+        return @
+
     fetch: ->
         ###
         Fetches front matter data from files
