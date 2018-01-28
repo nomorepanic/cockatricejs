@@ -28,10 +28,14 @@ describe 'the Content module', ->
         Chai.expect(@content.query.one).to.be.eql(false)
         Chai.expect(result).to.be.eql(@content)
 
-
     it 'should have an order method', ->
         result = @content.order('key')
         Chai.expect(@content.query.order).to.be.eql('key')
+        Chai.expect(result).to.be.eql(@content)
+
+    it 'should have a limit method', ->
+        result = @content.limit(3)
+        Chai.expect(@content.query.limit).to.be.eql(3)
         Chai.expect(result).to.be.eql(@content)
 
     it 'should have a fetch method', ->

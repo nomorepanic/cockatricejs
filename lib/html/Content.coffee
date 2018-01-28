@@ -4,6 +4,8 @@ Matter = require 'gray-matter'
 
 Files = require '../Files'
 
+_ = require 'lodash'
+
 
 class Content
 
@@ -19,8 +21,12 @@ class Content
         @query.one = false
         return @
 
-    order: ->
-        @query.order = 'key'
+    order: (key) ->
+        @query.order = key
+        return @
+
+    limit: (n) ->
+        @query.limit = n
         return @
 
     fetch: ->
