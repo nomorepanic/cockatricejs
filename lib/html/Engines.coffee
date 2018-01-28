@@ -9,6 +9,7 @@ class Engines
 
     compile: (template, data) ->
         if @engine == 'pug'
-            Pug.compileFile(template).compile(data)
+            pug = Pug.compileFile(template)
+            return pug(data)
 
 module.exports = Engines

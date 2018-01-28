@@ -13,12 +13,12 @@ describe 'the Engines module', ->
 
     it 'should have a compile method', ->
         Td.replace(Pug, 'compileFile')
-        compile = Td.function()
+        pug = Td.function()
         Td
             .when(Pug.compileFile('template.pug'))
-            .thenReturn({compile: compile})
+            .thenReturn(pug)
         Td
-            .when(compile('data'))
+            .when(pug('data'))
             .thenReturn('compiled-html')
         engines = new Engines('pug')
         result = engines.compile('template.pug', 'data')
