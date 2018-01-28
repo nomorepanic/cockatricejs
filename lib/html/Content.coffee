@@ -11,6 +11,13 @@ class Content
     constructor: (@path) ->
         @query = {}
 
+    content: (path) ->
+        ###
+        Provides a way to change the path, useful for templates
+        ###
+        @path = path
+        return  @
+
     one: ->
         @query.one = true
         return @

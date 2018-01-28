@@ -17,6 +17,11 @@ describe 'the Content module', ->
         Chai.expect(@content.path).to.be.eql('path')
         Chai.expect(@content.query).to.be.eql({})
 
+    it 'should have a content method', ->
+        result = @content.content('newpath')
+        Chai.expect(@content.path).to.be.eql('newpath')
+        Chai.expect(result).to.be.eql(@content)
+
     it 'should have a one method', ->
         result = @content.one()
         Chai.expect(@content.query.one).to.be.eql(true)
