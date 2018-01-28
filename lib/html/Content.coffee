@@ -49,12 +49,15 @@ class Content
 
     get: ->
         items = @fetch()
+
+        if @query.order
+            items = _.orderBy(items, [@query.order])
+
         if @query.one
             return items[0]
+
         if @query.limit
             return _.slice(items, 0, @query.limit)
         return items
-
-
 
 module.exports = Content
