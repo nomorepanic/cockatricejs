@@ -26,6 +26,6 @@ class Files
         if Files.isDirectory(basePath)
             files = fs.readdirSync(basePath)
             return Files.findMany(basePath, files, extension)
-        return Files.filter(basePath, extension)
+        return [Files.filter(basePath, extension)]
 
 module.exports = Files

@@ -53,7 +53,7 @@ describe 'the Files module', ->
             Td.when(Files.isDirectory('one.md')).thenReturn(false)
             Td.when(Files.filter('one.md', '.md')).thenReturn('filtered')
             result = Files.find('one.md', '.md')
-            Chai.expect(result).to.be.eql('filtered')
+            Chai.expect(result).to.be.eql(['filtered'])
 
     it 'should have a findMany function', ->
         Td.replace(Files, 'filter')
