@@ -10,7 +10,6 @@ class Content
 
     constructor: (@path) ->
         @query = {}
-        @data = []
 
     one: ->
         @query.one = true
@@ -41,11 +40,13 @@ class Content
         Fetches front matter data from files
         ###
         files = Files.find @path, '.md'
-        content = @
+        items = []
+        cls = @
         read = (file) ->
-            fs.readFile file, 'utf-8', (error, data) ->
-                content.data.push(content.frontMatter(data))
+            data = fs.readFileSync file, 'utf-8'
+            items.push(cls.frontMatter(data))
         read file for file in files
+        return items
 
     get: ->
         items = @fetch()

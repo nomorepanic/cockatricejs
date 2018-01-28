@@ -16,7 +16,6 @@ describe 'the Content module', ->
     it 'should have a path property', ->
         Chai.expect(@content.path).to.be.eql('path')
         Chai.expect(@content.query).to.be.eql({})
-        Chai.expect(@content.data).to.be.eql([])
 
     it 'should have a one method', ->
         result = @content.one()
@@ -45,19 +44,19 @@ describe 'the Content module', ->
 
     it 'should have a fetch method', ->
         Td.replace(Files, 'find')
-        Td.replace(fs, 'readFile')
+        Td.replace(fs, 'readFileSync')
         Td.replace(@content, 'frontMatter')
         Td
             .when(Files.find(@content.path, '.md'))
             .thenReturn(['one.md'])
         Td
-            .when(fs.readFile('one.md', 'utf-8'))
-            .thenCallback(null, '')
+            .when(fs.readFileSync('one.md', 'utf-8'))
+            .thenReturn('')
         Td
             .when(@content.frontMatter(''))
             .thenReturn({content: ''})
-        @content.fetch()
-        Chai.expect(@content.data).to.be.eql([{content: ''}])
+        result = @content.fetch()
+        Chai.expect(result).to.be.eql([{content: ''}])
 
     describe 'the get method', ->
         beforeEach ->
