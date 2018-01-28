@@ -1,10 +1,9 @@
 fs = require 'fs'
 
+_ = require 'lodash'
 Matter = require 'gray-matter'
 
 Files = require '../Files'
-
-_ = require 'lodash'
 
 
 class Content
@@ -52,6 +51,8 @@ class Content
         items = @fetch()
         if @query.one
             return items[0]
+        if @query.limit
+            return _.slice(items, 0, @query.limit)
         return items
 
 

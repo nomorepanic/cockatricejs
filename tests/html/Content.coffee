@@ -61,15 +61,21 @@ describe 'the Content module', ->
 
     describe 'the get method', ->
         beforeEach ->
-            @items = [{data: {title: 'one'}}]
+            @items = [{title: 'one'}, {title: 'two'}, {title: 'three'}]
             Td.replace(@content, 'fetch')
             Td
                 .when(@content.fetch())
                 .thenReturn(@items)
 
-        it 'should be able to return items', ->
+        it 'should be able to return all items', ->
             result = @content.get()
             Chai.expect(result).to.be.eql(@items)
+
+        it 'should be able to return n items', ->
+            @content.query.limit = 2
+            result = @content.get()
+            Chai.expect(result).to.be.eql([@items[0], @items[1]])
+
 
         it 'should be able to return one item', ->
             @content.query.one = true
