@@ -38,6 +38,11 @@ describe 'the Content module', ->
         Chai.expect(@content.query.limit).to.be.eql(3)
         Chai.expect(result).to.be.eql(@content)
 
+    it 'should have a frontMatter method', ->
+        string = '---\ntitle: test\n---\ncontent.'
+        result = @content.frontMatter(string)
+        Chai.expect(result).to.be.eql({title: 'test', content: 'content.'})
+
     it 'should have a fetch method', ->
         Td.replace(fs, 'readFile')
         Td.replace(Files, 'find')

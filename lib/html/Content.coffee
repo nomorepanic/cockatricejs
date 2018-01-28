@@ -29,6 +29,14 @@ class Content
         @query.limit = n
         return @
 
+    frontMatter: (string) ->
+        ###
+        Transforms a string into a front matter object
+        ###
+        frontMatter = Matter(string)
+        frontMatter.data.content = frontMatter.content
+        return frontMatter.data
+
     fetch: ->
         ###
         Fetches front matter data from files
