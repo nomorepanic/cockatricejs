@@ -44,16 +44,20 @@ describe 'the Content module', ->
         Chai.expect(result).to.be.eql({title: 'test', content: 'content.'})
 
     it 'should have a fetch method', ->
-        Td.replace(fs, 'readFile')
         Td.replace(Files, 'find')
+        Td.replace(fs, 'readFile')
+        Td.replace(@content, 'frontMatter')
+        Td
+            .when(Files.find(@content.path, '.md'))
+            .thenReturn(['one.md'])
         Td
             .when(fs.readFile('one.md', 'utf-8'))
             .thenCallback(null, '')
         Td
-            .when(Files.find(@content.path, '.md'))
-            .thenReturn(['one.md'])
+            .when(@content.frontMatter(''))
+            .thenReturn({content: ''})
         @content.fetch()
-        Chai.expect(@content.data).to.be.an('array').to.have.lengthOf(1)
+        Chai.expect(@content.data).to.be.eql([{content: ''}])
 
     describe 'the get method', ->
         beforeEach ->

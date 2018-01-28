@@ -42,10 +42,10 @@ class Content
         Fetches front matter data from files
         ###
         files = Files.find @path, '.md'
-        items = @data
+        content = @
         read = (file) ->
             fs.readFile file, 'utf-8', (error, data) ->
-                items.push(Matter(data))
+                content.data.push(content.frontMatter(data))
         read file for file in files
 
     get: ->
