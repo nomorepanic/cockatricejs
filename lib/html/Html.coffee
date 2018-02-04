@@ -25,14 +25,11 @@ class Html
         Compiles the given template to html with markdown data
         ###
         html_engine = @engine('pug')
-        fs.readFile file, 'utf-8', (error, data) =>
-            front = Matter(data)
-            front.data.content = front.content
-            html = html_engine.compile(@template, front.data)
-            page = path.parse(file).name
-            outputPath = path.join(@output, "#{ page }.html")
-            fs.writeFile outputPath, html, (innerError) -> true
-
+        data = @getContent(file).one().get()
+        html = html_engine.compile(@template, data)
+        page = path.parse(file).name
+        outputPath = path.join(@output, "#{ page }.html")
+        fs.writeFile outputPath, html, (innerError) -> true
 
     makePages: ->
         ###

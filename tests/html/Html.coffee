@@ -33,12 +33,16 @@ describe 'the Html module', ->
 
     it 'should compile a template', ->
         compile = Td.function()
+        one = Td.function()
+        get = Td.function()
         Td.replace(@html, 'engine')
+        Td.replace(@html, 'getContent')
         Td.replace(fs, 'writeFile')
-        Td.replace(fs, 'readFile')
+        Td.when(@html.getContent('front.md')).thenReturn({one: one})
+        Td.when(one()).thenReturn({get: get})
+        Td.when(get()).thenReturn({})
         Td.when(@html.engine('pug')).thenReturn({compile: compile})
-        Td.when(fs.readFile(@anything, @anything)).thenCallback(null, '')
-        Td.when(compile(@template, {content: ''})).thenReturn('html')
+        Td.when(compile(@template, {})).thenReturn('html')
         @html.compile('front.md')
         Td.verify(fs.writeFile('output/front.html', 'html', @anything))
 
