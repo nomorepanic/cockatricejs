@@ -91,4 +91,4 @@ describe 'the Content module', ->
             Chai.expect(result).to.be.eql(@items[0])
 
     afterEach ->
-      Td.reset()
+        Td.reset()
