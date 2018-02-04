@@ -4,8 +4,9 @@ Chai = require 'chai'
 Td = require 'testdouble'
 
 Files = require '../../lib/Files'
-Html = require '../../lib/html/Html'
+Content = require '../../lib/html/Content'
 Engines = require '../../lib/html/Engines'
+Html = require '../../lib/html/Html'
 
 
 describe 'the Html module', ->
@@ -26,6 +27,9 @@ describe 'the Html module', ->
         engine = @html.engine('engine')
         @expect(engine).to.be.an.instanceof(Engines)
         @expect(engine.engine).to.eql('engine')
+
+    it 'should have a getContent method', ->
+        @expect(@html.getContent('file.md')).to.be.an.instanceof(Content)
 
     it 'should compile a template', ->
         compile = Td.function()

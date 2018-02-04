@@ -4,6 +4,7 @@ path = require 'path'
 Matter = require 'gray-matter'
 
 Files = require '../Files'
+Content = require './Content'
 Engines = require './Engines'
 
 
@@ -15,6 +16,9 @@ class Html
         Create the html engine
         ###
         return new Engines(engine)
+
+    getContent: (file) ->
+        return new Content(file)
 
     compile: (file) ->
         ###
