@@ -26,7 +26,8 @@ class Html
         ###
         html_engine = @engine('pug')
         data = @getContent(file).one().get()
-        html = html_engine.compile(@template, data)
+        content = @getContent('content')
+        html = html_engine.compile(@template, {page: data, content: content})
         page = path.parse(file).name
         outputPath = path.join(@output, "#{ page }.html")
         fs.writeFile outputPath, html, (innerError) -> true
