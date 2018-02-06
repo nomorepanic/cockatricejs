@@ -53,6 +53,15 @@ describe 'the Cli module', ->
         Cli.dist()
         Td.verify(command.action(Td.matchers.anything()))
 
+    it 'should have a version command', ->
+        command = Td.object()
+        Td.replace(Commander, 'command')
+        Td
+            .when(Commander.command('version'))
+            .thenReturn(command)
+        Cli.version()
+        Td.verify(command.action(Td.matchers.anything()))
+
     it 'should have a main method', ->
         Td.replace(Commander, 'parse')
         Td.replace(Cli, 'compile')
@@ -60,10 +69,12 @@ describe 'the Cli module', ->
         Td.replace(Cli, 'build')
         Td.replace(Cli, 'test')
         Td.replace(Cli, 'dist')
+        Td.replace(Cli, 'version')
         Cli.main()
         Td.verify(Cli.compile())
         Td.verify(Cli.build())
         Td.verify(Cli.dist())
+        Td.verify(Cli.version())
         Td.verify(Commander.parse(process.argv))
 
     afterEach ->

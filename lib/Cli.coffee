@@ -31,12 +31,19 @@ class Cli
             .command('dist [what]')
             .action (what) ->
 
+    @version: ->
+        Commander
+            .command('version')
+            .action () ->
+                console.log 'Cockatrice version 0.0.7'
+
     @main: ->
         Cli.compile()
         Cli.lint()
         Cli.build()
         Cli.test()
         Cli.dist()
+        Cli.version()
         Commander.parse(process.argv)
 
 module.exports = Cli
