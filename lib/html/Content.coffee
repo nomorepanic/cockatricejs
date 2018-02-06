@@ -39,9 +39,11 @@ class Content
         ###
         Transforms a string into a front matter object
         ###
-        frontMatter = Matter(string)
+        frontMatter = Matter(string, {excerpt: true})
         html = Markdown.markdown.toHTML frontMatter.content
+        summary = Markdown.markdown.toHTML frontMatter.excerpt
         frontMatter.data.content = html
+        frontMatter.data.summary = summary
         return frontMatter.data
 
     fetch: ->

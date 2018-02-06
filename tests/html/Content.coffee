@@ -48,11 +48,15 @@ describe 'the Content module', ->
         toHTML = Td.function()
         Markdown.markdown.toHTML = toHTML
         Td
-            .when(Markdown.markdown.toHTML('content'))
+            .when(Markdown.markdown.toHTML('summary\n---\ncontent'))
             .thenReturn('html')
-        string = '---\ntitle: test\n---\ncontent'
+        Td
+            .when(Markdown.markdown.toHTML('summary\n'))
+            .thenReturn('summary')
+        string = '---\ntitle: test\n---\nsummary\n---\ncontent'
         result = @content.frontMatter(string)
-        Chai.expect(result).to.be.eql({title: 'test', content: 'html'})
+        expected = {title: 'test', content: 'html', summary: 'summary'}
+        Chai.expect(result).to.be.eql(expected)
 
     it 'should have a fetch method', ->
         Td.replace(Files, 'find')
