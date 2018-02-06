@@ -18,17 +18,25 @@ class Html
     getContent: (file) ->
         return new Content(file)
 
+    getUrl: (page, filename, outputPath) ->
+        ###
+        Produces the output path for a file (and hence its url).
+        ###
+        page_url = path.parse(filename).name
+        if page._url
+            page_url = page._url
+        return path.join(outputPath, "#{ page_url }.html")
+
     compile: (file) ->
         ###
         Compiles the given template to html with markdown data
         ###
         html_engine = @engine('pug')
-        data = @getContent(file).one().get()
+        page = @getContent(file).one().get()
         content = @getContent('content')
-        html = html_engine.compile(@template, {page: data, content: content})
-        page = path.parse(file).name
-        outputPath = path.join(@output, "#{ page }.html")
-        fs.writeFile outputPath, html, (innerError) -> true
+        html = html_engine.compile(@template, {page: page, content: content})
+        outputFilename = @getUrl(page, file, @output)
+        fs.writeFile outputFilename, html, (innerError) -> true
 
     makePages: ->
         ###

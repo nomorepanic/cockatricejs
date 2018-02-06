@@ -31,6 +31,16 @@ describe 'the Html module', ->
     it 'should have a getContent method', ->
         @expect(@html.getContent('file.md')).to.be.an.instanceof(Content)
 
+    describe 'the getUrl method', ->
+
+        it 'should build the url from the filename', ->
+            url = @html.getUrl {}, 'test.md', 'dist'
+            @expect(url).to.be.eql('dist/test.html')
+
+        it 'should use _url from the page when given', ->
+            url = @html.getUrl {_url: 'magic'}, 'test.md', 'dist'
+            @expect(url).to.be.eql('dist/magic.html')
+
     it 'should compile a template', ->
         compile = Td.function()
         one = Td.function()
@@ -38,6 +48,7 @@ describe 'the Html module', ->
         content = Td.function()
         Td.replace(@html, 'engine')
         Td.replace(@html, 'getContent')
+        Td.replace(@html, 'getUrl')
         Td.replace(fs, 'writeFile')
         Td.when(@html.getContent('front.md')).thenReturn({one: one})
         Td.when(@html.getContent('content')).thenReturn(content)
@@ -47,8 +58,11 @@ describe 'the Html module', ->
         Td
             .when(compile(@template, {page: {}, content: content}))
             .thenReturn('html')
+        Td
+            .when(@html.getUrl({}, 'front.md', 'output'))
+            .thenReturn('folder/test.html')
         @html.compile('front.md')
-        Td.verify(fs.writeFile('output/front.html', 'html', @anything))
+        Td.verify(fs.writeFile('folder/test.html', 'html', @anything))
 
     it 'should generate a page', ->
         Td.replace(@html, 'compile')
