@@ -89,5 +89,5 @@ cockatrice compile pug template.pug output/folder -i path/to/frontmatter/folder
 
 Compile scss:
 ```
-cockatrice compile sass main.scss output.css
+cockatrice compile scss main.scss output.css
 ```
