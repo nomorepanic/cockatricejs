@@ -2,6 +2,7 @@ fs = require 'fs'
 
 Chai = require 'chai'
 Td = require 'testdouble'
+Markdown = require 'markdown'
 Matter = require 'gray-matter'
 
 
@@ -43,9 +44,15 @@ describe 'the Content module', ->
         Chai.expect(result).to.be.eql(@content)
 
     it 'should have a frontMatter method', ->
-        string = '---\ntitle: test\n---\ncontent.'
+        Td.replace Markdown, 'markdown'
+        toHTML = Td.function()
+        Markdown.markdown.toHTML = toHTML
+        Td
+            .when(Markdown.markdown.toHTML('content'))
+            .thenReturn('html')
+        string = '---\ntitle: test\n---\ncontent'
         result = @content.frontMatter(string)
-        Chai.expect(result).to.be.eql({title: 'test', content: 'content.'})
+        Chai.expect(result).to.be.eql({title: 'test', content: 'html'})
 
     it 'should have a fetch method', ->
         Td.replace(Files, 'find')

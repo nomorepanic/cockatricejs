@@ -1,6 +1,7 @@
 fs = require 'fs'
 
 _ = require 'lodash'
+Markdown = require 'markdown'
 Matter = require 'gray-matter'
 
 Files = require '../Files'
@@ -39,7 +40,8 @@ class Content
         Transforms a string into a front matter object
         ###
         frontMatter = Matter(string)
-        frontMatter.data.content = frontMatter.content
+        html = Markdown.markdown.toHTML frontMatter.content
+        frontMatter.data.content = html
         return frontMatter.data
 
     fetch: ->
