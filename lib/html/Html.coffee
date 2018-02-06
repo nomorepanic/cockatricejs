@@ -1,8 +1,6 @@
 fs = require 'fs'
 path = require 'path'
 
-Matter = require 'gray-matter'
-
 Files = require '../Files'
 Content = require './Content'
 Engines = require './Engines'
