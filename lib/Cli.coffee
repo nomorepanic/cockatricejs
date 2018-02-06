@@ -35,7 +35,7 @@ class Cli
         Commander
             .command('version')
             .action () ->
-                console.log 'Cockatrice version 0.0.9'
+                console.log 'Cockatrice version 0.0.10'
 
     @main: ->
         Cli.compile()
