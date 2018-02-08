@@ -37,6 +37,7 @@ class Html
         html = html_engine.compile(@template, {page: page, content: content})
         outputFilename = @getUrl(page, file, @output)
         fs.writeFile outputFilename, html, (innerError) -> true
+        console.log "Compiled #{file} with #{@template}"
 
     makePages: ->
         ###
