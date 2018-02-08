@@ -69,7 +69,7 @@ describe 'the Content module', ->
             .when(@content.markDown('summary\n---\ncontent'))
             .thenReturn('html')
         Td
-            .when(@content.markDown('summary\n'))
+            .when(@content.markDown('summary\n', true))
             .thenReturn('summary')
         string = '---\ntitle: test\n---\nsummary\n---\ncontent'
         result = @content.frontMatter(string)

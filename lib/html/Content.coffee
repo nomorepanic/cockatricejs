@@ -46,7 +46,7 @@ class Content
         ###
         frontMatter = Matter(string, {excerpt: true})
         html = @markDown frontMatter.content
-        summary = @markDown frontMatter.excerpt
+        summary = @markDown frontMatter.excerpt, true
         frontMatter.data.content = html
         frontMatter.data.summary = summary
         return frontMatter.data
