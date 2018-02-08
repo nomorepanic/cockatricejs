@@ -35,6 +35,9 @@ class Content
         @query.limit = n
         return @
 
+    markDown: (string) ->
+        return Markdown.markdown.toHTML string
+
     frontMatter: (string) ->
         ###
         Transforms a string into a front matter object
