@@ -33,7 +33,7 @@ class Html
         ###
         html_engine = @engine('pug')
         page = @getContent(file).one().get()
-        content = @getContent('content')
+        content = @getContent
         html = html_engine.compile(@template, {page: page, content: content})
         outputFilename = @getUrl(page, file, @output)
         fs.writeFile outputFilename, html, (innerError) -> true
