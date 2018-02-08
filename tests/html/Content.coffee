@@ -54,14 +54,12 @@ describe 'the Content module', ->
         Chai.expect(result).to.be.eql('html')
 
     it 'should have a frontMatter method', ->
-        Td.replace Markdown, 'markdown'
-        toHTML = Td.function()
-        Markdown.markdown.toHTML = toHTML
+        Td.replace @content, 'markDown'
         Td
-            .when(Markdown.markdown.toHTML('summary\n---\ncontent'))
+            .when(@content.markDown('summary\n---\ncontent'))
             .thenReturn('html')
         Td
-            .when(Markdown.markdown.toHTML('summary\n'))
+            .when(@content.markDown('summary\n'))
             .thenReturn('summary')
         string = '---\ntitle: test\n---\nsummary\n---\ncontent'
         result = @content.frontMatter(string)
