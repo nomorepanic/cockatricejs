@@ -43,15 +43,25 @@ describe 'the Content module', ->
         Chai.expect(@content.query.limit).to.be.eql(3)
         Chai.expect(result).to.be.eql(@content)
 
-    it 'should have a markDown method', ->
-        Td.replace Markdown, 'markdown'
-        toHTML = Td.function()
-        Markdown.markdown.toHTML = toHTML
-        Td
-            .when(Markdown.markdown.toHTML('string'))
-            .thenReturn('html')
-        result = @content.markDown('string')
-        Chai.expect(result).to.be.eql('html')
+    describe 'the markDown method', ->
+        beforeEach ->
+            Td.replace Markdown, 'markdown'
+            toHTML = Td.function()
+            Markdown.markdown.toHTML = toHTML
+
+        it 'should parse markdown', ->
+            Td
+                .when(Markdown.markdown.toHTML('string'))
+                .thenReturn('html')
+            result = @content.markDown('string')
+            Chai.expect(result).to.be.eql('html')
+
+        it 'should replace characters when requested', ->
+            Td
+                .when(Markdown.markdown.toHTML('string'))
+                .thenReturn('html')
+            result = @content.markDown('string---', true)
+            Chai.expect(result).to.be.eql('html')
 
     it 'should have a frontMatter method', ->
         Td.replace @content, 'markDown'

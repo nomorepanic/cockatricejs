@@ -35,7 +35,9 @@ class Content
         @query.limit = n
         return @
 
-    markDown: (string) ->
+    markDown: (string, replace) ->
+        if replace
+            string = string.replace /---/, ""
         return Markdown.markdown.toHTML string
 
     frontMatter: (string) ->
