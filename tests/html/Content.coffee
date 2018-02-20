@@ -133,6 +133,11 @@ describe 'the Content module', ->
             result = @content.get()
             Chai.expect(result).to.be.eql([@items[0], @items[1]])
 
+        it 'should filter items', ->
+            @content.query.filters = {'title': 'one'}
+            result = @content.get()
+            Chai.expect(result).to.be.eql([@items[1]])
+
         it 'should be able to return one item', ->
             @content.query.one = true
             result = @content.get()

@@ -80,6 +80,9 @@ class Content
     get: ->
         items = @fetch()
 
+        if @query.filters
+            items = _.filter(items, @query.filters)
+
         if @query.order
             items = @orderItems(items, @query.order)
 
