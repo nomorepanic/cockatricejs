@@ -47,15 +47,15 @@ You can query for markdown content from pug.
 
 ## To do
 
-- [] Use a configuration file
-    - [] Load defaults from config
-- [] Add image compressor
-- [] Add minifiers
-- [] Add linters
-- [] Add support for running bundlers
-- [] Add js support
-- [] Add theming support
-- [] Improve output for actions and errors
+- [ ] Use a configuration file
+    - [ ] Load defaults from config
+- [ ] Add image compressor
+- [ ] Add minifiers
+- [ ] Add linters
+- [ ] Add support for running bundlers
+- [ ] Add js support
+- [ ] Add theming support
+- [ ] Improve output for actions and errors
 
 ## Contributing
 
