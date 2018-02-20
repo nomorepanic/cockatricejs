@@ -31,6 +31,12 @@ class Content
         @query.order = key
         return @
 
+    orderItems: (items, order) ->
+        if _.startsWith(order, '-')
+            cleanOrder = order.slice 1, order.length
+            return _.reverse(_.orderBy(items, [cleanOrder]))
+        return _.orderBy(items, [order])
+
     limit: (n) ->
         @query.limit = n
         return @
@@ -68,7 +74,7 @@ class Content
         items = @fetch()
 
         if @query.order
-            items = _.orderBy(items, [@query.order])
+            items = @orderItems(items, @query.order)
 
         if @query.one
             return items[0]

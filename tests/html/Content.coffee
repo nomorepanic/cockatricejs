@@ -13,6 +13,7 @@ Files = require '../../lib/Files'
 describe 'the Content module', ->
     beforeEach ->
         @content = new Content 'path'
+        @items = [{title: 'zero'}, {title: 'one'}, {title: 'two'}]
 
     it 'should have a path property', ->
         Chai.expect(@content.path).to.be.eql('path')
@@ -37,6 +38,15 @@ describe 'the Content module', ->
         result = @content.order('key')
         Chai.expect(@content.query.order).to.be.eql('key')
         Chai.expect(result).to.be.eql(@content)
+
+    describe 'the orderItems method', ->
+        it 'should be able to order items ascending', ->
+            result = @content.orderItems(@items, 'title')
+            Chai.expect(result).to.be.eql([@items[1], @items[2], @items[0]])
+
+        it 'should be able to order items descending', ->
+            result = @content.orderItems(@items, '-title')
+            Chai.expect(result).to.be.eql([@items[0], @items[2], @items[1]])
 
     it 'should have a limit method', ->
         result = @content.limit(3)
@@ -94,7 +104,6 @@ describe 'the Content module', ->
 
     describe 'the get method', ->
         beforeEach ->
-            @items = [{title: 'one'}, {title: 'two'}, {title: 'three'}]
             Td.replace(@content, 'fetch')
             Td
                 .when(@content.fetch())
@@ -104,10 +113,14 @@ describe 'the Content module', ->
             result = @content.get()
             Chai.expect(result).to.be.eql(@items)
 
-        it 'should be able to return ordered items', ->
+        it 'should  order items when necessary', ->
             @content.query.order = 'title'
+            Td.replace(@content, 'orderItems')
+            Td
+                .when(@content.orderItems(@items, @content.query.order))
+                .thenReturn(['ordered'])
             result = @content.get()
-            Chai.expect(result).to.be.eql([@items[0], @items[2], @items[1]])
+            Chai.expect(result).to.be.eql(['ordered'])
 
         it 'should be able to return n items', ->
             @content.query.limit = 2
