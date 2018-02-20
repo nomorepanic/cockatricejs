@@ -32,6 +32,9 @@ class Content
         return @
 
     orderItems: (items, order) ->
+        ###
+        Orders items using the given ordering
+        ###
         if _.startsWith(order, '-')
             cleanOrder = order.slice 1, order.length
             return _.reverse(_.orderBy(items, [cleanOrder]))
