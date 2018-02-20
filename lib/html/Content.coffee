@@ -40,6 +40,10 @@ class Content
             return _.reverse(_.orderBy(items, [cleanOrder]))
         return _.orderBy(items, [order])
 
+    filter: (filters) ->
+        @query.filters = filters
+        return @
+
     limit: (n) ->
         @query.limit = n
         return @

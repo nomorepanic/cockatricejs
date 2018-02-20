@@ -39,6 +39,12 @@ describe 'the Content module', ->
         Chai.expect(@content.query.order).to.be.eql('key')
         Chai.expect(result).to.be.eql(@content)
 
+
+    it 'should have a filter method', ->
+        result = @content.filter({'key': 'value'})
+        Chai.expect(@content.query.filters).to.be.eql({'key': 'value'})
+        Chai.expect(result).to.be.eql(@content)
+
     describe 'the orderItems method', ->
         it 'should be able to order items ascending', ->
             result = @content.orderItems(@items, 'title')
