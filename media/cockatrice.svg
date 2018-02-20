@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="150.29689mm"
+   height="21mm"
+   viewBox="0 0 150.2969 21"
+   version="1.1"
+   id="svg842"
+   sodipodi:docname="cockatrice-f.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <defs
+     id="defs836" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="109.55429"
+     inkscape:cy="57.140567"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g926"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata839">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(12.804457,-96.755948)">
+    <g
+       transform="translate(-5.7373269,-58.656688)"
+       id="g926">
+      <g
+         transform="matrix(0.25667426,0,0,0.25667426,-12.269436,123.29501)"
+         id="g872-1">
+        <path
+           style="display:inline;fill:#a8e0a6;fill-opacity:1;stroke:#a8e0a6;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 64.862334,125.55894 -6.69366,22.21173 -28.555596,27.12335 -9.147988,-8.09062 z"
+           id="path883-7"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+        <path
+           style="display:inline;fill:#8bd688;fill-opacity:1;stroke:#8bd688;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 65.082164,166.58062 -6.91349,-18.80995 -28.555596,27.12335 14.219124,13.06001 z"
+           id="path887-0"
+           inkscape:connector-curvature="0" />
+        <path
+           style="display:inline;fill:#6dcc6a;fill-opacity:1;stroke:#6dcc6a;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 43.832204,187.95403 21.24996,-21.37341 -9.33949,17.29804 9.55932,22.96769 z"
+           id="path889-93"
+           inkscape:connector-curvature="0" />
+      </g>
+      <text
+         id="text1425-3"
+         y="175.57431"
+         x="5.6024022"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.90915489px;line-height:1.25;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;letter-spacing:0px;word-spacing:0px;fill:#404040;fill-opacity:1;stroke:none;stroke-width:0.62272888;"
+         xml:space="preserve"><tspan
+           id="tspan1427-6"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;fill:#404040;fill-opacity:1;stroke-width:0.62272888;"
+           y="175.57431"
+           x="5.6024022"
+           sodipodi:role="line">Cockatrice</tspan></text>
+    </g>
+  </g>
+</svg>
