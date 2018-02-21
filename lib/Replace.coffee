@@ -8,7 +8,7 @@ class Replace
         options = {
             regex: regex,
             replacement: replacement,
-            paths: path,
+            paths: [path],
             recursive: true,
             silent: true
         }
