@@ -1,4 +1,5 @@
 Html = require './html/Html'
+Replace = require './Replace'
 Stylesheets = require './styles/Stylesheets'
 
 
@@ -18,5 +19,7 @@ class Handler
         else if what == 'scss'
             stylesheets = Handler.stylesheets target, output
             stylesheets.compile()
+        else if what == 'replace'
+            Replace.replace(target, options.input, output)
 
 module.exports = Handler

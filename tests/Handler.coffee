@@ -4,6 +4,7 @@ Chai = require 'chai'
 
 Html = require '../lib/html/Html'
 Handler = require '../lib/Handler'
+Replace = require '../lib/Replace'
 Stylesheets = require '../lib/styles/Stylesheets'
 
 
@@ -40,3 +41,11 @@ describe 'the Handler module', ->
                 .thenReturn({compile: compile})
             Handler.compile 'scss', 'target', 'output', {input: 'input'}
             Td.verify(compile())
+
+        it 'should be able to run replace operations', ->
+            Td.replace Replace, 'replace'
+            Handler.compile 'replace', 'target', 'output', {input: 'input'}
+            Td.verify(Replace.replace('target', 'input', 'output'))
+
+    afterEach ->
+        Td.reset()
