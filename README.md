@@ -39,6 +39,12 @@ Compile scss:
 cockatrice compile scss main.scss output.css
 ```
 
+Replace stuff:
+
+```
+cockatrice compile replace path replacement -i regex
+```
+
 ## Features
 Cockatrice supports pug, scss and markdown with frontmatter.
 
