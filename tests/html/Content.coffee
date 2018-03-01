@@ -2,7 +2,7 @@ fs = require 'fs'
 
 Chai = require 'chai'
 Td = require 'testdouble'
-Markdown = require 'markdown'
+MarkdownIt = require 'markdown-it'
 Matter = require 'gray-matter'
 
 
@@ -59,23 +59,27 @@ describe 'the Content module', ->
         Chai.expect(@content.query.limit).to.be.eql(3)
         Chai.expect(result).to.be.eql(@content)
 
+
+    it 'should have markdownEngine method', ->
+        engine = @content.markDownEngine()
+        Chai.expect(engine).to.be.an.instanceof(MarkdownIt)
+
     describe 'the markDown method', ->
         beforeEach ->
-            Td.replace Markdown, 'markdown'
-            toHTML = Td.function()
-            Markdown.markdown.toHTML = toHTML
+            Td.replace @content, 'markDownEngine'
+            render = Td.function()
+            Td
+                .when(@content.markDownEngine())
+                .thenReturn({render: render})
+            Td
+                .when(render('string'))
+                .thenReturn('html')
 
         it 'should parse markdown', ->
-            Td
-                .when(Markdown.markdown.toHTML('string'))
-                .thenReturn('html')
             result = @content.markDown('string')
             Chai.expect(result).to.be.eql('html')
 
         it 'should replace characters when requested', ->
-            Td
-                .when(Markdown.markdown.toHTML('string'))
-                .thenReturn('html')
             result = @content.markDown('string---', true)
             Chai.expect(result).to.be.eql('html')
 

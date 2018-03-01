@@ -1,7 +1,7 @@
 fs = require 'fs'
 
 _ = require 'lodash'
-Markdown = require 'markdown'
+MarkdownIt = require 'markdown-it'
 Matter = require 'gray-matter'
 
 Files = require '../Files'
@@ -48,10 +48,14 @@ class Content
         @query.limit = n
         return @
 
+    markDownEngine: ->
+        return new MarkdownIt()
+
     markDown: (string, replace) ->
         if replace
             string = string.replace /---/, ""
-        return Markdown.markdown.toHTML string
+        markdown = @markDownEngine()
+        return markdown.render string
 
     frontMatter: (string) ->
         ###
