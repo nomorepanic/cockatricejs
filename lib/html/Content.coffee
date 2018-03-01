@@ -5,6 +5,7 @@ MarkdownIt = require 'markdown-it'
 Matter = require 'gray-matter'
 
 Files = require '../Files'
+Highlight = require 'highlightjs'
 
 
 class Content
@@ -59,7 +60,16 @@ class Content
         return "#{ summary }..."
 
     markDownEngine: ->
-        return new MarkdownIt()
+        configuration = {
+            highlight: (str, language) ->
+                if language
+                    if Highlight.getLanguage(language)
+                        try
+                            return Highlight.highlight(language, str).value
+                        catch __
+                return ''
+        }
+        return new MarkdownIt(configuration)
 
     markDown: (string, replace) ->
         if replace
