@@ -52,10 +52,11 @@ class Content
         ###
         Creates a summary of a string of the given length
         ###
-        summary = _.words(string, /[^,\n ]+/g).splice(0, length)
-        if _.last(summary) == '##'
-            summary = _.take(summary, summary.length - 1)
-        return summary.join(' ')
+        words = _.words(string, /[^,\n ]+/g).splice(0, length)
+        if _.last(words) == '##'
+            words = _.take(words, words.length - 1)
+        summary = words.join(' ')
+        return "#{ summary }..."
 
     markDownEngine: ->
         return new MarkdownIt()
