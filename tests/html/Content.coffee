@@ -59,6 +59,14 @@ describe 'the Content module', ->
         Chai.expect(@content.query.limit).to.be.eql(3)
         Chai.expect(result).to.be.eql(@content)
 
+    describe 'the summary method', ->
+        it 'should split a string at a given length', ->
+            summary = @content.summary('## break me not\n\nparagraph', 4)
+            Chai.expect(summary).to.be.eql('## break me not')
+
+        it 'should remove trailing headings', ->
+            summary = @content.summary('## break me ## not\n\nparagraph', 4)
+            Chai.expect(summary).to.be.eql('## break me')
 
     it 'should have markdownEngine method', ->
         engine = @content.markDownEngine()

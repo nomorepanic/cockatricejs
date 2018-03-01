@@ -48,6 +48,15 @@ class Content
         @query.limit = n
         return @
 
+    summary: (string, length) ->
+        ###
+        Creates a summary of a string of the given length
+        ###
+        summary = _.words(string, /[^,\n ]+/g).splice(0, length)
+        if _.last(summary) == '##'
+            summary = _.take(summary, summary.length - 1)
+        return summary.join(' ')
+
     markDownEngine: ->
         return new MarkdownIt()
 
