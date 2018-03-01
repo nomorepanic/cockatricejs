@@ -92,10 +92,15 @@ describe 'the Content module', ->
             Chai.expect(result).to.be.eql('html')
 
     it 'should have a frontMatter method', ->
+        text = 'summary\n---\ncontent'
         Td.replace @content, 'markDown'
+        Td.replace @content, 'summary'
         Td
-            .when(@content.markDown('summary\n---\ncontent'))
+            .when(@content.markDown(text))
             .thenReturn('html')
+        Td
+            .when(@content.summary(text, 40))
+            .thenReturn('summary\n')
         Td
             .when(@content.markDown('summary\n', true))
             .thenReturn('summary')
