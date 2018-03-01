@@ -40,6 +40,7 @@
   "dependencies": {
     "commander": "^2.12.2",
     "gray-matter": "^3.1.1",
+    "highlightjs": "^9.10.0",
     "lodash": "^4.17.4",
     "markdown-it": "^8.4.1",
     "node-sass": "^4.7.2",
