@@ -26,5 +26,5 @@ describe 'the Stylesheets module', ->
             .when(Sass.render(@anything))
             .thenCallback(null, {'css': 'compiledcss'})
         @stylesheets.compile()
-        Td.verify(Sass.render({@file}, @anything))
+        Td.verify(Sass.render({@file, indentedSyntax: true}, @anything))
         Td.verify(fs.writeFile(@output, 'compiledcss', @anything))
