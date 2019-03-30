@@ -1,6 +1,6 @@
 # Cockatrice
 
-[![Travis](https://img.shields.io/travis/Vesuvium/cockatrice.svg?style=for-the-badge)](https://travis-ci.org/Vesuvium/cockatrice)
+[![Travis](https://img.shields.io/travis/Vesuvium/cockatricejs.svg?style=for-the-badge)](https://travis-ci.org/Vesuvium/cockatricejs)
 [![npm](https://img.shields.io/npm/v/cockatrice.svg?style=for-the-badge)](https://www.npmjs.com/package/cockatrice)
 [![npm](https://img.shields.io/badge/status-alpha-red.svg?style=for-the-badge)]()
 
