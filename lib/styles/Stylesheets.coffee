@@ -1,6 +1,6 @@
 fs = require 'fs'
 
-Sass = require 'node-sass'
+Sass = require 'sass'
 
 
 class Stylesheets
