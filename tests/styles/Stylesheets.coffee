@@ -1,7 +1,7 @@
 fs = require 'fs'
 
 Chai = require 'chai'
-Sass = require 'node-sass'
+Sass = require 'sass'
 Td = require 'testdouble'
 
 Stylesheets = require '../../lib/styles/Stylesheets'
